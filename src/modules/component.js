@@ -25,7 +25,7 @@ const scores = [
 const displayScores = (person) => {
   const indScore = document.createElement('h3');
   indScore.classList.add('ind-score');
-  indScore.innerHTML = person.name + ':' + person.score;
+  indScore.innerHTML = `${person.name}:${person.score}`;
   scoreList.appendChild(indScore);
 };
 
