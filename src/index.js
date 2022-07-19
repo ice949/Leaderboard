@@ -1,4 +1,7 @@
-import './style.css';
-import component from './modules/component.js';
+import "./style.css";
+import { scores, displayScores } from "./modules/component.js";
+const form = document.getElementById("form");
 
-window.onload = component();
+addEventListener("DOMContentLoaded", () => {
+  scores.forEach(displayScores);
+});
