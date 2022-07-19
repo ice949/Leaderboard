@@ -1,5 +1,5 @@
 const scoreList = document.getElementById('score-list');
-const scores = [
+const scores = JSON.parse(localStorage.getItem('tasks')) || [
   {
     name: 'Ice',
     score: 99,
@@ -22,6 +22,16 @@ const scores = [
   },
 ];
 
+const addScore = (name, score, displayScores) => {
+  const person = {
+    name: name.value,
+    score: score.value,
+  };
+  scores.push(person);
+  localStorage.setItem('scores', JSON.stringify(scores));
+  displayScores(person);
+};
+
 const displayScores = (person) => {
   const indScore = document.createElement('h3');
   indScore.classList.add('ind-score');
@@ -29,4 +39,4 @@ const displayScores = (person) => {
   scoreList.appendChild(indScore);
 };
 
-export { scores, displayScores };
+export { scores, displayScores, addScore };
