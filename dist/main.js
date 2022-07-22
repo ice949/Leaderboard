@@ -350,7 +350,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "#test {\n  color: red;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "* {\n  box-sizing: border-box;\n  margin: 0;\n}\n\nbody {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  padding: 5%;\n}\n\n.main-h {\n  width: 90%;\n  display: flex;\n  justify-content: flex-start;\n}\n\n.main-section {\n  display: flex;\n  justify-content: space-between;\n  width: 80%;\n}\n\n.scores {\n  width: 50%;\n  display: flex;\n  flex-direction: column;\n  gap: 20px;\n}\n\n.refresh {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.score-list {\n  width: 100%;\n  border: 2px solid;\n  min-height: 50px;\n}\n\n.ind-score {\n  padding: 20px;\n}\n\n.ind-score:nth-child(odd) {\n  background-color: #bbb;\n}\n\n.form-div {\n  width: 40%;\n  padding: 20px;\n}\n\n.form {\n  display: flex;\n  flex-direction: column;\n  gap: 20px;\n  align-items: flex-end;\n}\n\n.heading {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n}\n\n.form input {\n  width: 100%;\n  padding: 20px;\n}\n\nbutton {\n  padding: 20px;\n}\n\nh1 {\n  font-size: 45px;\n}\n\nh2 {\n  font-size: 30px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -472,22 +472,6 @@ module.exports = function (cssWithMappingToString) {
   return list;
 };
 
-/***/ }),
-/* 11 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-const component = () => {
-  const element = document.getElementById('test');
-  element.innerHTML = 'Welcome';
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component);
-
-
 /***/ })
 /******/ 	]);
 /************************************************************************/
@@ -562,11 +546,67 @@ var __webpack_exports__ = {};
 (() => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _modules_component_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(11);
 
 
+// import { scores, displayScores, addScore } from './modules/component.js';
 
-window.onload = (0,_modules_component_js__WEBPACK_IMPORTED_MODULE_1__["default"])();
+// const form = document.getElementById('form');
+// const name = document.getElementById('name');
+// const score = document.getElementById('score');
+
+// window.addEventListener('DOMContentLoaded', () => {
+//   scores.forEach(displayScores);
+// });
+
+// form.addEventListener('submit', (e) => {
+//   e.preventDefault();
+//   addScore(name, score, displayScores);
+//   console.log(scores);
+// });
+
+const refresh = document.getElementById('refresh-btn');
+const gameContainer = document.getElementById('form');
+const newScoreler = document.getElementById('name');
+const scores = document.getElementById('score');
+const listContainer = document.querySelector('.score-list');
+const url = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/bNJs0tzt8gXgsvp6cV0o/scores/';
+
+const renderScore = (gameUsers) => {
+  const gamers = (gameUsers.result);
+  let list = '';
+  gamers.forEach((gameUser) => {
+    list += `${person.name}:${person.score}`;;
+    listContainer.innerHTML = list;
+  });
+};
+const getScores = async () => {
+  const res = await fetch(url);
+  const data = await res.json();
+  renderScore(data);
+};
+refresh.addEventListener('click', () => {
+  getScores();
+});
+const addScoreForm = async () => {
+  const res = fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      user: newScoreler.value,
+      score: scores.value,
+    }),
+  });
+  const data = await (await res).json();
+  newScoreler.value = '';
+  scores.value = '';
+  return data;
+};
+gameContainer.addEventListener('submit', (e) => {
+  e.preventDefault();
+  addScoreForm();
+});
 
 })();
 
