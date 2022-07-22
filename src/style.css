@@ -5,11 +5,11 @@
 }
 
 @keyframes color {
-  0%   { background: #75bebe; }
-  20%  { background: #74c275; }
-  40%  { background: #9eaf32; }
-  60%  { background: #a79343; }
-  80%  { background: #7e52a7; }
+  0% { background: #75bebe; }
+  20% { background: #74c275; }
+  40% { background: #9eaf32; }
+  60% { background: #a79343; }
+  80% { background: #7e52a7; }
   100% { background: #788d8d; }
 }
 
@@ -18,9 +18,8 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 5%;
-  background-color: #a471d3;
   gap: 50px;
-  background: #33CCCC; /* Fallback */
+  background: #3cc;
   animation: color 22s infinite linear;
 }
 
@@ -34,12 +33,10 @@ body {
   display: flex;
   justify-content: space-between;
   width: 80%;
-  background: rgba(255, 255, 255, 0.32);
+  background: rgb(255 255 255 / 32%);
   border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
   backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  /* border: 1px solid rgba(255, 255, 255, 0.3); */
   padding: 50px;
   border: 2px dotted #bbb;
 }
@@ -98,12 +95,13 @@ body {
 }
 
 .form input::placeholder {
-  color: rgb(219, 213, 213);
+  color: rgb(219 213 213);
 }
 
 button {
   padding: 20px;
   border-radius: 8px;
+
   /* border: 2px dashed #bbb; */
   background-color: #000;
 }
@@ -116,5 +114,3 @@ h1 {
 h2 {
   font-size: 30px;
 }
-
-
