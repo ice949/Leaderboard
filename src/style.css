@@ -1,6 +1,16 @@
 * {
   box-sizing: border-box;
   margin: 0;
+  color: #fff;
+}
+
+@keyframes color {
+  0% { background: #75bebe; }
+  20% { background: #74c275; }
+  40% { background: #9eaf32; }
+  60% { background: #a79343; }
+  80% { background: #7e52a7; }
+  100% { background: #788d8d; }
 }
 
 body {
@@ -8,18 +18,27 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 5%;
+  gap: 50px;
+  background: #3cc;
+  animation: color 22s infinite linear;
 }
 
 .main-h {
   width: 90%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .main-section {
   display: flex;
   justify-content: space-between;
   width: 80%;
+  background: rgb(255 255 255 / 32%);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
+  backdrop-filter: blur(5px);
+  padding: 50px;
+  border: 2px dotted #bbb;
 }
 
 .scores {
@@ -37,7 +56,7 @@ body {
 
 .score-list {
   width: 100%;
-  border: 2px solid;
+  border: 2px solid #000;
   min-height: 50px;
 }
 
@@ -70,14 +89,26 @@ body {
 .form input {
   width: 100%;
   padding: 20px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 2px dotted #bbb;
+}
+
+.form input::placeholder {
+  color: rgb(219 213 213);
 }
 
 button {
   padding: 20px;
+  border-radius: 8px;
+
+  /* border: 2px dashed #bbb; */
+  background-color: #000;
 }
 
 h1 {
-  font-size: 45px;
+  font-size: 65px;
+  color: #fff;
 }
 
 h2 {
